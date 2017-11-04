@@ -1,22 +1,18 @@
+''' updated code that i pushed through bash to my git hub account! neat!! '''
 
 
 class SchoolDistrict(object):
-    weights = [.2, .2, .2, .4]
+    weights = [.1, .1, .1, .7]
     total_student = 0
-    ''' initializes name, grades, gender and name to be used in the following methods and future nested classes '''
-    def __init__(self,name,gender,qgrade1,qgrade2,qgrade3,final):
+    def __init__(self,name,gender,scores):
         self.name = name
         self.gender = gender
-        self.qgrade1 = qgrade1
-        self.qgrade2 = qgrade2
-        self.qgrade3 = qgrade3
-        self.final = final
+        self.scores = scores
         SchoolDistrict.total_student += 1
-''' inputs are grades outputs the weighted averages of the students as well as there letter grade the weight is a class variable found 
-above future code will allow for a non specific number of grades to be inputed...quizes homework extra credit ect. '''
+
     def year_grade(self):
-        weighted_score = self.qgrade1*self.weights[0] + self.qgrade2*self.weights[1] \
-                         + self.qgrade3*self.weights[2] + self.final*self.weights[3]
+        weighted_score = self.scores[0]*self.weights[0] + self.scores[1]*self.weights[1] \
+                         + self.scores[2]*self.weights[2] + self.scores[3]*self.weights[3]
         for weight in self.weights:
             if weighted_score >= 90:
                 letter_grade = 'A'
@@ -35,12 +31,18 @@ class HighSchool(SchoolDistrict):
         pass
 
 
-''' future code will pull random test scores based on random int, this will come from a seperate file '''
-# import randint from random
-kid1 = SchoolDistrict('nick','male',54,90,55,100)
-kid2 = SchoolDistrict('joe','male',70,90,100,100)
-kid3 = SchoolDistrict('julia','male',60,30,23,80)
-kid4 = SchoolDistrict('marcus','male',2,100,55,100)
+from random import randint
+def gen_scores(n):
+    scores = []
+    for ii in range(1,n):
+     scores.append(randint(60,105))
+    return scores
+
+
+kid1 = SchoolDistrict('nick','male',gen_scores(5))
+kid2 = SchoolDistrict('joe','male',gen_scores(5))
+kid3 = SchoolDistrict('julia','male',gen_scores(5))
+kid4 = SchoolDistrict('marcus','male',gen_scores(5))
 
 
 print kid1.year_grade()
