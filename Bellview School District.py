@@ -1,5 +1,5 @@
 from random import randint
-
+''' initialize method creating all the instance variables '''
 class SchoolDistrict(object):
     weights = [.1, .1, .1, .7]
     total_student = 0
@@ -8,10 +8,10 @@ class SchoolDistrict(object):
         self.gender = gender
         self.scores = scores
         SchoolDistrict.total_student += 1
-
+    ''' calculates weighted average and prints gender,name,grade,pronoun '''
     def year_grade(self):
         weighted_score = 0
-        for weight in range(0,4):
+        for weight in range(0,len(self.weights)):
             weighted_score += self.scores[weight]*self.weights[weight]
         for weight in self.weights:
             if weighted_score >= 90:
@@ -29,10 +29,9 @@ class SchoolDistrict(object):
         return '%ss weighted average was %s giving %s a letter grade of %s'\
                %(self.name,weighted_score,pronoun,letter_grade)
 
+''' future goal to add subclass here making it inherit from super class '''
 
-''' attempting to practice with subclasses and super classes here giving this class inheritence of School District '''
-
-
+''' generates random scores for students... can only take 4 currently fix to take more? '''
 
 def gen_scores(n):
     scores = []
@@ -40,6 +39,7 @@ def gen_scores(n):
      scores.append(randint(60,105))
     return scores
 
+''' test code to ensure everything runs properly '''
 
 kid1 = SchoolDistrict('nick','male',gen_scores(5),'soccer')
 kid2 = SchoolDistrict('joe','male',gen_scores(5),'football')
