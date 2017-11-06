@@ -1,3 +1,3 @@
 # Bellview-School-District
-Learning Python, and GitHub through creating a complex school
+Learning Python, BASH and GitHub through creating a complex school
 
